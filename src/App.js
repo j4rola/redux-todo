@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+import Array from './features/array/Array'; 
 import './App.css';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           </a>
         </span>
       </header>
+      <Array/>
     </div>
   );
 }
