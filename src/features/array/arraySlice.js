@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 
-const initialState = { 
-    value: ['testing'],
+const initialState = {     
+    value: [''],
     status: 'idle',
 };
 
@@ -11,28 +11,22 @@ export const arraySlice = createSlice({
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
       addString: (state, action) => {
-        // Redux Toolkit allows us to write "mutating" logic in reducers. It
-        // doesn't actually mutate the state because it uses the Immer library,
+        // Redux Toolkit allows us to write "mutating" logic in reducers. It  
+        // doesn't actually mutate the state because it uses the Immer library,  
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
-        console.log(action.payload)
-        state.value.push(action.payload.value)
+        console.log(action.payload)  
+        action.payload.id = (state.value.length - 1).toString()   
+        state.value.push(action.payload)     
+        console.log(action.payload)  
+
       },
       deleteString: (state, action) => {
-       
-        const e = action.payload 
-        const id = e.target.parentNode.id
-        
-     
-        
-        console.log(id)
-        console.log(state)
-        console.log(action.payload)  
-        console.log(state.value)
 
-        //state.value.filter(x => x !== text) 
-         
-    
+        state.value.filter(x => x.id !== action.payload.id)  
+        //console.log(state.value.filter(x => x.id !== action.payload.id))
+        console.log(current(state.value))
+        
       }
     },
 });
