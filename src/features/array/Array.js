@@ -14,15 +14,17 @@ function Array() {
 
     const [state, updateState] = useState({value:'', id:''})
 
+    const arr = ['']
+
     const update = (x) => {        
-        updateState({value: x, id:''})   
+        updateState({value: x, id: uuidv4()})   
     }
 
     const handleClick = (e) => {
         console.log(e.target.id)
         const id = e.target.id 
         dispatch(deleteString(id))
-    }
+    }    
 
 
   return (
@@ -34,9 +36,9 @@ function Array() {
             <button onClick={() => {dispatch(addString(state))}}>Submit</button>           
         </form>          
       
-      { globalArray.map((x, i) => <h3>{x.value}<button id={i} onClick={(e) => handleClick(e)}>X</button></h3>)}   
+      { globalArray.map((x) => <h3 key={x.id}>{x.value}<button id={x.id} onClick={(e) => handleClick(e)}>X</button></h3>)}      
       
-    </div>    
+    </div>        
   )
 }
 
